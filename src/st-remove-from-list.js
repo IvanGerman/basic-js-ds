@@ -19,7 +19,26 @@ const { NotImplementedError } = require('../extensions/index.js');
  * }
  */
 
-module.exports = function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+module.exports = function removeKFromList(l, k) {
+  
+  let copyOfLinkedList = l;
+  // "cut off" the first listNode if his value = k
+  if ( l.value === k ) {
+
+    l = l.next;
+
+  };
+  // go through the ListNodes of the linked list
+  while ( copyOfLinkedList.next ) { 
+
+    if ( copyOfLinkedList.next.value === k ) {  // if node value = k:
+
+      copyOfLinkedList.next = copyOfLinkedList.next.next; // change the link to over next node, node with value=k is "deleted"
+    };
+
+    copyOfLinkedList = copyOfLinkedList.next;  // copyOfLinkedList and l refer to the same object, so changing copyOfLinkedList we change l too
+  };
+  
+  return l;
+  
 }
